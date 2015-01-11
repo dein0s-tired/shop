@@ -1,0 +1,41 @@
+{#{% if news_list %}#}
+{#    <ul>#}
+{#    {% for news in latest_news_list %}#}
+{#        <li><a href="/sex_shop/{{ news.id }}/">{{ news.name }}</a></li>#}
+{#    {% endfor %}#}
+{#    </ul>#}
+{#{% else %}#}
+{#    <p>No news are available.</p>#}
+{#{% endif %}#}
+
+{% if categories_list %}
+    <ul>
+    {% for category in categories_list %}
+    <li><a href="/sex_shop/categories/{{ category.id }}/">{{ category.name }}</a> </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No categories are available.</p>
+{% endif %}
+
+{% for i in news %}
+    {# Each "contact" is a Contact model object. #}
+    {{ i.name|upper }}<br />
+    ...
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if news.has_previous %}
+            <a href="?page={{ news.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ news.number }} of {{ news.paginator.num_pages }}.
+        </span>
+
+        {% if news.has_next %}
+            <a href="?page={{ news.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
