@@ -28,7 +28,7 @@ def categories(request):
 
 
 def category(request, category_id):
-    category_item = get_object_or_404(Category, pk=category_id)
+    category_item = get_object_or_404(Category, id=category_id)
     empty = False if Product.objects.exclude(available_count=0).filter(category=category_id) else True
     if not empty:
         return render(request, 'sex_shop/category.html', {'category': category_item})

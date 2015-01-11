@@ -8,34 +8,38 @@
 {#    <p>No news are available.</p>#}
 {#{% endif %}#}
 
-{% if categories_list %}
+
+<div class="categories">
+    <p>CATEGORIES</p>
+     {% if categories_list %}
     <ul>
     {% for category in categories_list %}
     <li><a href="/sex_shop/categories/{{ category.id }}/">{{ category.name }}</a> </li>
     {% endfor %}
     </ul>
-{% else %}
-    <p>No categories are available.</p>
-{% endif %}
+    {% else %}
+        <p>No categories are available.</p>
+    {% endif %}
+</div>
+
+<p>NEWS</p>
 
 {% for i in news %}
-    {# Each "contact" is a Contact model object. #}
     {{ i.name|upper }}<br />
-    ...
 {% endfor %}
 
 <div class="pagination">
     <span class="step-links">
         {% if news.has_previous %}
-            <a href="?page={{ news.previous_page_number }}">previous</a>
+            <a href="?page={{ news.previous_page_number }}"><<</a>
         {% endif %}
 
         <span class="current">
-            Page {{ news.number }} of {{ news.paginator.num_pages }}.
+            Page {{ news.number }} of {{ news.paginator.num_pages }}
         </span>
 
         {% if news.has_next %}
-            <a href="?page={{ news.next_page_number }}">next</a>
+            <a href="?page={{ news.next_page_number }}">>></a>
         {% endif %}
     </span>
 </div>
